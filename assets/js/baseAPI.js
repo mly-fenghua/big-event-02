@@ -12,4 +12,13 @@ $.ajaxPrefilter(function(options) {
             Authorization: localStorage.getItem("token") || ''
         }
     }
+    // 登录拦截
+    options.complete = function(res) {
+        // console.log(res);
+        if (res.responseJSON.status === 1 && res.responseJSON.message === "登录失败！") {
+            localStorage.removeItem('token')
+            location.href = "/login.html"
+        }
+
+    }
 })
