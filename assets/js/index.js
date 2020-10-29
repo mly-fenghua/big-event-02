@@ -1,6 +1,20 @@
 // 入口函数
 $(function() {
     getUserInfo()
+    $('#btnLogout').on('click', function(e) {
+        layer.confirm('确定退出吗?', { icon: 3, title: '提示' }, function(index) {
+            //do something
+            // 清除本地
+            localStorage.removeItem('token')
+                // 跳转登录
+            location.href = '/login.html'
+                // 关闭询问框
+            layer.close(index);
+        });
+
+    })
+
+
 })
 
 function getUserInfo() {
